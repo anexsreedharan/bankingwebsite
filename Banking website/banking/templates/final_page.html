@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+        background-color:aqua;
+        font-size: large;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 200;
+        color: white;
+
+        background-image: url("{% static 'final.jpg' %}");
+        background-size:cover;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center;color: white;">Thank you...Your Application is Submitted</h1>
+<p style="padding-left:300px;color: white;">Click below link to go back home page</p>
+<a style="padding-left:300px;" href="{% url 'bank:home' %}" class="btn btn-info">Home</a>
+</body>
+</html>

@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Application Form</title>
+  <script>
+    var district_branches = {
+      "Ernakulam": ["Aluva", "Edapally"],
+      "Kottayam": ["Pala", "Kanjirappalli", "Erimayur"],
+      "Palakkad": ["olavakkod", "Mundur", "Parali"]
+    };
+
+    function updateBranches() {
+      var district = document.getElementById("district").value;
+      var branches = district_branches[district];
+      var branch_select = document.getElementById("branch");
+      branch_select.innerHTML = "";
+      for (var i = 0; i < branches.length; i++) {
+        var branch = branches[i];
+        var option = document.createElement("option");
+        option.value = branch;
+        option.text = branch;
+        branch_select.add(option);
+      }
+    }
+  </script>
+  <style>
+     body {
+
+      background-image: url("{% static 'form.jpg' %}");
+      background-size:cover;
+    }
+
+    h1 {
+      color: #4CAF50;
+      text-align: center;
+    }
+
+    form {
+      background-color: rgba(9, 53, 67, 0.844);
+      color:white;
+      width: 50%;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0,1,0,0.2);
+    }
+
+    label {
+
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+	<form action="{% url 'bank:final' %}">
+		<label for="name">Name:</label><br>
+		<input type="text" id="name" name="name"><br><br>
+
+		<label for="dob">DOB:</label><br>
+		<input type="date" id="dob" name="dob"><br><br>
+
+		<label for="age">Age:</label><br>
+		<input type="number" id="age" name="age"><br><br>
+
+		<label for="gender">Gender:</label><br>
+		<select id="gender" name="gender">
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+			<option value="other">Other</option>
+		</select><br><br>
+
+		<label for="phone">Phone Number:</label><br>
+		<input type="tel" id="phone" name="phone"><br><br>
+
+		<label for="email">Mail ID:</label><br>
+		<input type="email" id="email" name="email"><br><br>
+
+		<label for="address">Address:</label><br>
+		<textarea id="address" name="address"></textarea><br><br>
+
+		<form action="{% url 'bank:home' %}">
+    <label for="district">District:</label><br>
+    <select id="district" onchange="updateBranches()">
+      <option value="Ernakulam">Ernakulam</option>
+      <option value="Kottayam">Kottayam</option>
+      <option value="Palakkad">Palakkad</option>
+    </select>
+    <br>
+    <label for="branch">Branch:</label><br>
+    <select id="branch"></select> <br><br>
+
+
+		<label for="account_type">Account Type:</label><br>
+		<select id="account_type" name="account_type">
+			<option value="savings">Savings Account</option>
+			<option value="current">Current Account</option>
+		</select><br><br>
+
+		<label for="materials">Materials Provided:</label>
+		<input type="checkbox" id="debit_card" name="debit_card" value="debit_card">
+		<label for="debit_card">Debit Card</label>
+		<input type="checkbox" id="credit_card" name="credit_card" value="credit_card">
+		<label for="credit_card">Credit Card</label>
+		<input type="checkbox" id="cheque_book" name="cheque_book" value="cheque_book">
+		<label for="cheque_book">Cheque Book</label><br><br>
+
+		<a href=""><button>Submit</button></a> <br><br>
+
+	</form>
+		<a style="padding-left:373px;" href="{% url 'bank:home' %}"><button>Logout</button></a>
+</body>
+</html>

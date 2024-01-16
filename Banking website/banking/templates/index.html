@@ -1,0 +1,12 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="card mb-3">
+  <img class="card-img-top" style="height:550px; width:100%;" src="{% static 'index.jpeg' %}" alt="Card image cap">
+  <div class="card-body" style="text-align:center;">
+    <h5 class="card-title">Click here to login</h5>
+    <a href="{% url 'bank:login_page' %}" class="btn btn-info">Login</a>
+  </div>
+</div>
+{% endblock %}
